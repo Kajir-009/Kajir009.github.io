@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
@@ -19,7 +18,6 @@ const {
 	GISCUS_LANG,
 } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
-// https://astro.build/config
 const config = defineConfig({
 	site: "https://Kajir009.github.io",
 	output: "static",
@@ -44,22 +42,9 @@ const config = defineConfig({
 					title: "Projects",
 				},
 			},
-			/*giscus: {
-				repository: GISCUS_REPO,
-				repositoryId: GISCUS_REPO_ID,
-				category: GISCUS_CATEGORY,
-				categoryId: GISCUS_CATEGORY_ID,
-				mapping: GISCUS_MAPPING as GiscusMapping,
-				strict: GISCUS_STRICT === "true",
-				reactionsEnabled: GISCUS_REACTIONS_ENABLED === "true",
-				emitMetadata: GISCUS_EMIT_METADATA === "true",
-				lang: GISCUS_LANG,
-			},*/
 		}),
 	],
-	adapter: node({
-		mode: "standalone",
-	}),
+	// ← adapter eliminado
 });
 
 export default config;
