@@ -1,4 +1,5 @@
 import mdx from "@astrojs/mdx";
+import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import expressiveCode from "astro-expressive-code";
@@ -18,19 +19,16 @@ const {
 	GISCUS_LANG,
 } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
-export default defineConfig({
+// https://astro.build/config
+const config = defineConfig({
 	site: "https://Kajir-009.github.io",
 	output: "static",
-
 	integrations: [
 		expressiveCode({
 			themes: [spectreDark],
 		}),
-
 		mdx(),
-
 		sitemap(),
-
 		spectre({
 			name: "Spectre",
 			openGraph: {
@@ -46,7 +44,6 @@ export default defineConfig({
 					title: "Projects",
 				},
 			},
-
 			giscus: {
 				repository: GISCUS_REPO,
 				repositoryId: GISCUS_REPO_ID,
@@ -60,4 +57,9 @@ export default defineConfig({
 			},
 		}),
 	],
+	adapter: node({
+		mode: "standalone",
+	}),
 });
+
+export default config;
